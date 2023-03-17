@@ -1,3 +1,4 @@
+/* eslint-disable no-inner-declarations */
 {
   ('use strict');
 
@@ -35,7 +36,7 @@
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
-    optArticleTagSelector = '.post-tags .list'
+    optArticleTagSelector = '.post-tags .list';
 
   const generateTitleList = function () {
     /* remove content of titleList */
@@ -74,28 +75,38 @@
 
   function generateTags() {
     /* find all articles */
+    const articles = document.querySelectorAll(optArticleSelector);
 
-  /* START LOOP: for every article: */
+    /* START LOOP: for every article: */
+    for (let article of articles) {
+      /* find tags wrapper */
+      const tagsWrapper = article.querySelector(optArticleTagSelector);
+      tagsWrapper.innerHTML = '';
 
-    /* find tags wrapper */
+      /* make html variable with empty string */
+      let html = '';
 
-    /* make html variable with empty string */
+      /* get tags from data-tags attribute */
+      const articleTags = article.getAttribute('data-tags');
 
-    /* get tags from data-tags attribute */
+      /* split tags into array */
+      const articleTagsArray = articleTags.split(' ');
 
-    /* split tags into array */
+      /* START LOOP: for each tag */
+      for (let tag of articleTagsArray) {
+        console.log('tag', tag);
+        /* generate HTML of the link */
+        const linkHTML = `<li><a href="#tag-${tag}">${tag}</a></li>`;
 
-    /* START LOOP: for each tag */
+        /* add generated code to html variable */
+        html = html + linkHTML;
 
-      /* generate HTML of the link */
-
-      /* add generated code to html variable */
-
-    /* END LOOP: for each tag */
-
-    /* insert HTML of all the links into the tags wrapper */
-
-  /* END LOOP: for every article: */
+        /* END LOOP: for each tag */
+      }
+      /* insert HTML of all the links into the tags wrapper */
+      tagsWrapper.innerHTML = html;
+      /* END LOOP: for every article: */
+    }
   }
 
   generateTitleList();
