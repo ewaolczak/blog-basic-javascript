@@ -37,7 +37,8 @@
     optTitleSelector = '.post-title',
     optTitleListSelector = '.titles',
     optArticleTagSelector = '.post-tags .list',
-    optArticleAuthorSelector = '.post-author';
+    optArticleAuthorSelector = '.post-author',
+    optTagsListSelector = '.tags.list';
 
   function generateTitleList(customSelector = '') {
     /* remove content of titleList */
@@ -76,6 +77,9 @@
   }
 
   function generateTags() {
+    /* [NEW] create a new variable allTags with an empty array */
+    let allTags = [];
+
     /* find all articles */
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -102,12 +106,22 @@
         /* add generated code to html variable */
         html = html + linkHTML;
 
+        /* [NEW] check if this link is NOT already in allTags */
+        if (allTags.indexOf(linkHTML) == -1) {
+          /* [NEW] add generated code to allTags array */
+          allTags.push(linkHTML);
+        }
         /* END LOOP: for each tag */
       }
       /* insert HTML of all the links into the tags wrapper */
       tagsWrapper.innerHTML = html;
       /* END LOOP: for every article: */
     }
+    /* [NEW] find list of tags in right column */
+    const tagList = document.querySelector(optTagsListSelector);
+
+    /* [NEW] add html from allTags to tagList */
+    tagList.innerHTML = allTags.join(' ');
   }
 
   function tagClickHandler(e) {
@@ -199,7 +213,6 @@
 
     /* make a new constant "author" and extract author from the "href" constant */
     const author = href.replace('#', '');
-    console.log('author', author);
 
     /* find all author links with class active */
     const activeAuthorLinks = document.querySelectorAll('a.active[href^="#"');
