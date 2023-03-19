@@ -94,6 +94,16 @@ body {
   }
 }
 
+.list.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  li {
+    padding-right: 7px;
+    line-height: initial;
+  }
+}
+
 /* Authors */
 
 .authors {
@@ -117,10 +127,33 @@ body {
 
 .post-tags {
   display: flex;
+  align-items: center;
   p {
     margin: 0 10px 0 0;
   }
   li {
     padding-left: 5px;
   }
+}
+
+/* Tags */
+
+.tag-size-1 {
+  font-size: 18px;
+}
+
+.tag-size-2 {
+  font-size: 21px;
+}
+
+.tag-size-3 {
+  font-size: 24px;
+}
+
+.tag-size-4 {
+  font-size: 27px;
+}
+
+.tag-size-5 {
+  font-size: 30px;
 }
