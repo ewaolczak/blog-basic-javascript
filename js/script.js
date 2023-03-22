@@ -32,7 +32,7 @@
       articles: '.post',
       linksTo: {
         tags: 'a.active[href^="#tag-"]',
-        authors: 'a.active[href^="#"'
+        authors: 'a.active[href^="#"]'
       }
     },
     title: '.post-title',
